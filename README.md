@@ -1,6 +1,7 @@
 # DSPA AI Tutor and Virtual Assistant
 
-![](https://github.com/SOCR/DSPA_AI_Assistant/blob/57f5d2d26fd2d1946d3d25b9e2ea258547040949/DSPA_AI_Assistant.png)
+![image](https://github.com/user-attachments/assets/0247b825-8bac-4b8a-bcb3-8d25245c40a1)
+
 
 ## Project info
 
