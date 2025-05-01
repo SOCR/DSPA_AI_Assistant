@@ -69,6 +69,7 @@ The application leverages the Vercel AI SDK for managing chat interactions and s
         ```env
         NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
         NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+        OPENAI_API_KEY
         ```
     *   Add any necessary API keys for the AI models used by the Vercel AI SDK (e.g., `OPENAI_API_KEY`). Refer to the Vercel AI SDK documentation for specific requirements.
 
