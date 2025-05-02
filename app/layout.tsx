@@ -3,7 +3,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Script from 'next/script';
 import { GA_TRACKING_ID } from '@/utils/analytics';
-import AnalyticsProvider from './analytics-provider';
+// import AnalyticsProvider from './analytics-provider';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -55,11 +55,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AnalyticsProvider>
+          {/* <AnalyticsProvider> */}
             <main className="flex-1 w-full h-[calc(100vh-4rem)] overflow-hidden">
               {children}
             </main>
-          </AnalyticsProvider>
+          {/* </AnalyticsProvider> */}
         </ThemeProvider>
       </body>
     </html>
