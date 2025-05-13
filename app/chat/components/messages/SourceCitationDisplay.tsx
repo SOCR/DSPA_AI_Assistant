@@ -8,6 +8,7 @@ import {
   HoverCardTrigger,
 } from '@/components/ui/hover-card'; // Assuming standard shadcn path
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming standard shadcn path
+import { useEbookContext } from '@/app/chat/lib/context/ebook-context'; // Import the ebook context hook
 
 interface Source {
   sentence: string;
@@ -36,6 +37,9 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
   jsonContent,
   citationNumber,
 }) => {
+  // Get the navigation function from the context
+  const { navigateToChapter } = useEbookContext();
+
   let sources: Source[] = [];
   try {
     sources = JSON.parse(jsonContent);
@@ -65,9 +69,9 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
   const generateSourceUrl = (source: Source): string | undefined => {
     if (!source.chapter) return undefined;
     const baseUrl = `${DSPA_NOTES_BASE_URL}${encodeURIComponent(source.chapter)}.html`;
-    if (source.title) {
+    if (source.sentence) {
       // Append text fragment if title exists
-      return `${baseUrl}#:~:text=${encodeURIComponent(source.title)}`;
+      return `${baseUrl}#:~:text=${encodeURIComponent(source.sentence)}`;
     }
     return baseUrl; // Return base URL if no title
   };
@@ -101,7 +105,7 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
           <div className="px-4 pt-3 pb-2 border-b">
             <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
               {sources.map((source, index) => {
-                const sourceUrl = generateSourceUrl(source); // Use helper
+                const sourceUrl = generateSourceUrl(source); // Full URL with fragment
                 const pillContent = (
                   <span
                     className="inline-block whitespace-nowrap rounded-full bg-gray-200 dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-700 dark:text-gray-200 group-hover:bg-gray-300 dark:group-hover:bg-gray-600 cursor-pointer"
@@ -119,6 +123,12 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-full"
+                        onClick={(e) => {
+                          if (sourceUrl && navigateToChapter) {
+                            e.preventDefault(); 
+                            navigateToChapter(sourceUrl); // Navigate in sidebar with full URL
+                          }
+                        }}
                       >
                         {pillContent}
                       </a>
@@ -134,7 +144,7 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
           {/* Detailed list with links */}
           <CardContent className="p-4 text-xs space-y-3 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
             {sources.map((source, index) => {
-              const sourceUrl = generateSourceUrl(source); // Use helper
+              const sourceUrl = generateSourceUrl(source); // Full URL with fragment
               const titleContent = (
                 <>{source.title}{source.chapter ? ` (${source.chapter})` : ''}</>
               );
@@ -147,6 +157,12 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:underline focus:outline-none focus:ring-1 focus:ring-blue-500 rounded"
+                      onClick={(e) => {
+                          if (sourceUrl && navigateToChapter) {
+                            e.preventDefault(); 
+                            navigateToChapter(sourceUrl); // Navigate in sidebar with full URL
+                          }
+                      }}
                     >
                       {titleContent}
                     </a>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { AppSidebar } from "./components/sidebar/app-sidebar";
 import { ThemeProvider } from "next-themes";
 import {
@@ -11,6 +12,55 @@ import {
 } from "@/components/ui/sidebar"
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import AuthButton from '@/components/header-auth';
+import { EbookProvider, useEbookContext } from '@/app/chat/lib/context/ebook-context';
+import EbookPanel from './components/ebook/EbookPanel';
+import { chapters } from './lib/data/ebook-chapters'; // Import chapters for default URL
+
+// Inner component to access context after Provider
+function ChatLayoutContent({ children }: { children: React.ReactNode }) {
+  const { isEbookPanelOpen, openEbookPanel } = useEbookContext();
+
+  const handleOpenEbook = () => {
+    // Open with the first chapter by default if none is set
+    openEbookPanel(); 
+  };
+
+  return (
+    <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset className="flex flex-col h-screen overflow-hidden">
+          <header className="flex justify-between items-center h-14 shrink-0 px-4 border-b">
+            <SidebarTrigger className="-ml-1" />
+            <div className="flex items-center gap-3 pr-4">
+              <button 
+                onClick={handleOpenEbook} 
+                className="p-1 px-2 text-sm bg-secondary hover:bg-secondary/80 rounded"
+              >
+                DSPA Ebook
+              </button>
+              <ThemeSwitcher />
+              <AuthButton />
+            </div>
+          </header>
+          <PanelGroup direction="horizontal" className="flex-grow w-full overflow-hidden">
+            <Panel defaultSize={isEbookPanelOpen ? 70 : 100} minSize={30}>
+              <div className="h-full w-full overflow-y-auto bg-background">
+                {children}
+              </div>
+            </Panel>
+            {isEbookPanelOpen && (
+              <>
+                <PanelResizeHandle className="w-0.5 bg-transparent hover:bg-muted-foreground/20 transition-colors data-[resize-handle-state=drag]:bg-muted-foreground/30" />
+                <Panel defaultSize={30} minSize={20} collapsible={false} collapsedSize={0} >
+                  <EbookPanel />
+                </Panel>
+              </>
+            )}
+          </PanelGroup>
+        </SidebarInset>
+    </SidebarProvider>
+  );
+}
 
 export default function ChatLayout({ children }: Readonly<{
   children: React.ReactNode;
@@ -19,30 +69,16 @@ export default function ChatLayout({ children }: Readonly<{
   
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <header className="flex justify-between items-center h-16 shrink-0 px-4">
-                <SidebarTrigger className="-ml-1" />
-                <div className="flex items-center gap-3 pr-4">
-                  <ThemeSwitcher />
-                  <AuthButton />
-                </div>
-              </header>
-              <div className="flex h-[calc(100vh-4rem)] w-full overflow-hidden">
-                <div className="flex-1 h-full w-full overflow-hidden">
-                  {children}
-                </div>
-              </div>
-            </SidebarInset>
-        </SidebarProvider>
-      </ThemeProvider>
+      <EbookProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ChatLayoutContent>{children}</ChatLayoutContent>
+        </ThemeProvider>
+      </EbookProvider>
     </QueryClientProvider>
   );
 }

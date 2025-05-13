@@ -35,7 +35,7 @@ export function AppSidebar() {
   }, []);
 
   return (
-    <Sidebar collapsible="icon" variant="inset" >
+    <Sidebar collapsible="icon"  >
       <SidebarHeader className="pb-0">
         <div className={`flex items-center py-2 gap-2 `}>
           <div className="flex rounded-full items-center gap-2">
@@ -67,33 +67,26 @@ export function AppSidebar() {
         <SidebarHistory user={user} sidebarState={state} />
       </SidebarContent>
       
-      <SidebarFooter className="text-xs text-center p-2 border-t">
+      <SidebarFooter className="text-xs text-center p-2 border-none">
         <div className="flex flex-col items-center gap-1">
-          <a 
-            href="https://www.socr.umich.edu/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            SOCR Resource
-          </a>
-          {/* <div className="flex items-center gap-1">
-            <span>Visitor number: </span>
-            <iframe 
-              src="https://c.statcounter.com/5714596/0/038e9ac4/0/" 
-              width="80" 
-              height="15" 
-              title="Web Analytics" 
-              className="border-0 overflow-hidden bg-transparent"
-              style={{ margin: 0, padding: 0 }}
-            />
-          </div> */}
-          <div className="flex items-center gap-1">
-            <span>| {currentYear} |</span>
-            <a href="mailto:statistics@umich.edu" target="_blank" rel="noopener noreferrer">
-              statistics@umich.edu
-            </a>
-          </div>
+          {state !== "collapsed" && (
+            <>
+                <a 
+                  href="https://www.socr.umich.edu/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  SOCR Resource
+                </a>
+                <div className="flex items-center gap-1">
+                  <span>| {currentYear} |</span>
+                  <a href="mailto:statistics@umich.edu" target="_blank" rel="noopener noreferrer">
+                    statistics@umich.edu
+                  </a>
+                </div>
+            </>
+            )}
           <div className="mt-1 font-semibold">V 1.0</div>
         </div>
       </SidebarFooter>

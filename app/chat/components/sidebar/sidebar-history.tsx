@@ -321,6 +321,9 @@ export function SidebarHistory({ user, sidebarState }: SidebarHistoryProps) {
     );
   }
 
+  // Sort sessions by updated_at descending before grouping
+  sessions.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+
   const groupedChats = groupChatsByDate(sessions);
 
   const chatItemGroupProps = {

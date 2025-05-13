@@ -26,12 +26,12 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
+            value: 'credentialless',
           },
           // Updated CSP: Added avatar.vercel.sh to img-src and repo.r-wasm.org to connect-src
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self' https://cdn.jsdelivr.net; script-src 'self' https://secure.statcounter.com https://www.google-analytics.com https://www.googletagmanager.com 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; img-src 'self' https://cdn.jsdelivr.net data: https://avatar.vercel.sh https://c.statcounter.com https://www.google-analytics.com; child-src blob:; connect-src 'self' https://cdn.jsdelivr.net https://*.supabase.co https://repo.r-wasm.org https://webr.r-wasm.org https://secure.statcounter.com https://www.google-analytics.com; frame-src 'self' https://c.statcounter.com https://secure.statcounter.com https://www.google-analytics.com https://www.googletagmanager.com;"
+            value: "default-src 'self' https://cdn.jsdelivr.net; script-src 'self' https://secure.statcounter.com https://www.google-analytics.com https://www.googletagmanager.com 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://www.socr.umich.edu https://socr.umich.edu https://mathjax.rstudio.com; style-src 'self' 'unsafe-inline' https://www.socr.umich.edu https://socr.umich.edu; font-src 'self' https://mathjax.rstudio.com https://www.socr.umich.edu https://socr.umich.edu; worker-src 'self' blob:; img-src 'self' https://cdn.jsdelivr.net data: https://avatar.vercel.sh https://c.statcounter.com https://www.google-analytics.com https://www.socr.umich.edu https://socr.umich.edu; child-src blob:; connect-src 'self' https://cdn.jsdelivr.net https://*.supabase.co https://repo.r-wasm.org https://webr.r-wasm.org https://secure.statcounter.com https://www.google-analytics.com https://www.socr.umich.edu https://socr.umich.edu https://mathjax.rstudio.com; frame-src 'self' https://www.socr.umich.edu https://socr.umich.edu https://c.statcounter.com https://secure.statcounter.com https://www.google-analytics.com https://www.googletagmanager.com;"
           },
         ],
       },
