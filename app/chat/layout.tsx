@@ -51,7 +51,7 @@ function ChatLayoutContent({ children }: { children: React.ReactNode }) {
             {isEbookPanelOpen && (
               <>
                 <PanelResizeHandle className="w-0.5 bg-transparent hover:bg-muted-foreground/20 transition-colors data-[resize-handle-state=drag]:bg-muted-foreground/30" />
-                <Panel defaultSize={30} minSize={20} collapsible={false} collapsedSize={0} >
+                <Panel defaultSize={70} minSize={20} collapsible={false} collapsedSize={0} >
                   <EbookPanel />
                 </Panel>
               </>
