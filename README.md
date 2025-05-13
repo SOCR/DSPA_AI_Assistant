@@ -1,6 +1,12 @@
 # DSPA AI Tutor and Virtual Assistant
 
-![](https://github.com/SOCR/DSPA_AI_Assistant/blob/57f5d2d26fd2d1946d3d25b9e2ea258547040949/DSPA_AI_Assistant.png)
+![image](https://github.com/user-attachments/assets/2b1d9962-2a5b-48ab-9855-7577588e95f6)
+
+
+
+
+
+
 
 ## Project info
 
@@ -69,6 +75,7 @@ The application leverages the Vercel AI SDK for managing chat interactions and s
         ```env
         NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
         NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+        OPENAI_API_KEY
         ```
     *   Add any necessary API keys for the AI models used by the Vercel AI SDK (e.g., `OPENAI_API_KEY`). Refer to the Vercel AI SDK documentation for specific requirements.
 
