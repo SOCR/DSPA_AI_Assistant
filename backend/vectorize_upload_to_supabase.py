@@ -24,6 +24,8 @@ def create_embeddings(text: str):
         # Decide how to handle errors, e.g., return zero vector or skip
         return [0.0] * 1536
 
+# def create_content_summary(content: str):
+#     return embedder.embeddings.create(input=[content.strip()], model="text-embedding-3-small").data[0].embedding
 
 def main():
     supabase_url = os.getenv("SUPABASE_URL")
