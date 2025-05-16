@@ -99,7 +99,7 @@ export function AppSidebar() {
               </a>
             </div>
           </div>
-          <div className="mt-1 font-semibold">V 1.0</div>
+          <div className="mt-1 font-semibold">V 1.3</div>
         </div>
       </SidebarFooter>
       

@@ -53,12 +53,12 @@ const SourceCitationDisplay: React.FC<SourceCitationDisplayProps> = ({
   } catch (error) {
     console.error('Error parsing source citation JSON:', error, 'Content:', jsonContent);
     // Render nothing or an error indicator if parsing fails
-    return <span className="text-red-500">[Invalid Citation Data]</span>; 
+    // return <span className="text-red-500">[Invalid Citation Data]</span>; 
   }
 
   // Ensure we have sources to display
   if (sources.length === 0) {
-    return <span className="text-gray-500">[Empty Citation]</span>;
+    return <span className="text-gray-500"></span>;
   }
 
   // Generate a unique ID for ARIA attributes if needed, though HoverCard might handle this
