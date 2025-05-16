@@ -9,7 +9,7 @@ export async function generateTitleFromUserMessage({
     message: Message;
   }) {
     const { text: title } = await generateText({
-      model: openai('gpt-4o'),
+      model: openai('gpt-4.1-mini'),
       system: `\n
       - you will generate a short title based on the first message a user begins a conversation with
       - ensure it is not more than 80 characters long
@@ -17,6 +17,7 @@ export async function generateTitleFromUserMessage({
       - do not use quotes or colons
       - And include an icon or emoji at the begginning of the title`,
       prompt: JSON.stringify(message),
+      temperature: 0.7,
     });
   
     return title;
