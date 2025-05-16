@@ -15,6 +15,16 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const { isEbookPanelOpen } = useEbookContext();
 
   const suggestedActions = [
+    {
+      title: '📊 Visualize ML Workflow',
+      label: 'with a Mermaid diagram',
+      action: 'Explain the typical workflow of a machine learning project from data collection to deployment, then generate a Mermaid flowchart diagram to visualize these steps clearly.',
+    },
+    {
+      title: '🧠 Diagram a Neural Network',
+      label: 'using Mermaid',
+      action: 'Describe the basic components of a simple feedforward neural network (input layer, hidden layer(s), output layer, neurons, connections), then generate a Mermaid diagram to visualize its structure. Use different node shapes or styles for layers vs. neurons if possible.',
+    },
     {title: '📊 Generate a PCA report',
       label: 'in R with visualizations',
       action: 'Generate R code that performs Principal Component Analysis on a sample dataset (e.g., iris) and creates a report with visualizations of the principal components and explained variance.',
