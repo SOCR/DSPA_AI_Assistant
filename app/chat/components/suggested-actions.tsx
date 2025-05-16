@@ -15,25 +15,24 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const { isEbookPanelOpen } = useEbookContext();
 
   const suggestedActions = [
-    {title: '📊 Generate a ppt on PCA',
-      label: 'using R',
-      action: 'Generate R code that creates a PowerPoint presentation about Principal Component Analysis. The code should generate slides covering PCA concepts, implementation, and visualization examples.',
+    {title: '📊 Generate a PCA report',
+      label: 'in R with visualizations',
+      action: 'Generate R code that performs Principal Component Analysis on a sample dataset (e.g., iris) and creates a report with visualizations of the principal components and explained variance.',
     },
     {
-      title: '🧠 Write a simple',
-      label: 'neural network in R',
-      action: 'Write a simple neural network in R',
+      title: '🌳 Build a decision tree',
+      label: 'in R for classification',
+      action: 'Generate R code to build and visualize a decision tree classifier using the iris dataset. Show the tree structure and evaluate its accuracy.',
     },
     {
-      title: '🔍 Explain what is ',
-      label: `naive bayes`,
-      action: `Explain what is naive bayes`,
+      title: '🔍 Explain SVMs with Iris',
+      label: 'using R & visualize',
+      action: 'Explain Support Vector Machines, then generate R code to train an SVM classifier on the Iris dataset and visualize the decision boundary if possible in a 2D projection.',
     },
-
     {
-      title: '🌊 How does a',
-      label: 'diffusion model work?',
-      action: 'How does a diffusion model work?',
+      title: '📈 Visualize K-Means',
+      label: 'clustering in Python',
+      action: 'Generate Python code to perform K-Means clustering on a sample 2D dataset and create a scatter plot visualizing the data points and cluster centroids using scikit-learn and matplotlib.',
     },
   ];
 

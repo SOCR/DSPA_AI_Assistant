@@ -55,7 +55,7 @@ import { z } from 'zod';
       return createDataStreamResponse({
         execute: (dataStream) => {
           const result = streamText({
-            model: openai('gpt-4o'),
+            model: openai('gpt-4.1'),
             system: systemPrompt,
             messages,
             maxSteps: 5,
@@ -87,7 +87,7 @@ import { z } from 'zod';
                     });
 
                     // 2. Call Supabase RPC function with the embedding
-                    const { data, error } = await supabase.rpc('retrieve_docs', {
+                    const { data, error } = await supabase.rpc('retrieve_dspa_docs', {
                       query_embedding: embedding, // Pass the generated embedding
                       num_docs: 5, // Keep the default or make it configurable?
                     });
